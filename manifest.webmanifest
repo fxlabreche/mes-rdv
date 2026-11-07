@@ -1,12 +1,12 @@
 {
-  "id": "/mes-rdv/app-rdv",
   "name": "Mes RDV",
   "short_name": "Mes RDV",
+  "description": "Mes rendez-vous en direct de Notion",
   "lang": "fr",
-  "start_url": "./?source=pwa",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f6f8",
+  "background_color": "#0b5c8a",
   "theme_color": "#0b5c8a",
   "icons": [
     {
@@ -22,7 +22,7 @@
       "purpose": "any"
     },
     {
-      "src": "icon-maskable-512.png",
+      "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
