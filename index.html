@@ -166,7 +166,7 @@ input[type=color]{width:56px;height:44px;padding:2px;border:2px solid var(--line
 #prev{pointer-events:none}
 #toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:10px 16px;border-radius:10px;z-index:80;max-width:92vw;font-weight:700}
 #toast[hidden]{display:none}
-#cd[hidden]{display:none}
+#cd[hidden]{display:none!important}
 
 /* Personnalisation : formes, poids, majuscules, lignes alternées, sections de réglages */
 :root{--rad:10px;--tw:700}
@@ -757,7 +757,7 @@ async function relay(action, payload){
   try { res = await fetch(RELAY, { method: "POST", headers: { "Content-Type": "application/json", "x-app-code": code }, body: JSON.stringify({ action, ...(payload || {}) }) }); }
   catch (e) { throw new Error("Hors connexion"); }
   let j = {}; try { j = await res.json(); } catch (e) {}
-  if (res.status === 401){ try { localStorage.removeItem(CODE_KEY); } catch (e) {} const e1 = new Error("Code d'accès incorrect : recharge l'appli pour le ressaisir."); e1.needCode = true; throw e1; }
+  if (res.status === 401){ try { if (getCode() === code) localStorage.removeItem(CODE_KEY); } catch (e) {} const e1 = new Error("Code d'accès incorrect : recharge l'appli pour le ressaisir."); e1.needCode = true; throw e1; }
   if (!res.ok) throw new Error(j.error || ("Erreur " + res.status));
   return j;
 }
